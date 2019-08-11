@@ -152,6 +152,8 @@ for py_ver in "${DESIRED_PYTHON[@]}"; do
             CU_VERSION="$cuver" \
             SOURCE_ROOT_DIR="$vision_rootdir" \
             conda build -c "$ANACONDA_USER" \
+                        -c defaults \
+                        -c conda-forge \
                         -c "numba/label/dev" \
                         --no-anaconda-upload \
                         --python "$py_ver" \
@@ -164,6 +166,8 @@ for py_ver in "${DESIRED_PYTHON[@]}"; do
             CU_VERSION="$cuver" \
             SOURCE_ROOT_DIR="$vision_rootdir" \
             conda build -c "$ANACONDA_USER" \
+                        -c defaults \
+                        -c conda-forge \
                         --no-anaconda-upload \
                         --python "$py_ver" \
                         --output-folder "$output_folder" \

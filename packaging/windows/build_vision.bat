@@ -34,7 +34,7 @@ if NOT "%CUDA_VERSION%" == "cpu" (
 )
 
 set BUILD_VISION=1
-set TORCH_WHEEL=torch -f https://download.pytorch.org/whl/%CUVER%/stable.html --no-index
+REM set TORCH_WHEEL=torch -f https://download.pytorch.org/whl/%CUVER%/stable.html --no-index
 
 IF "%DESIRED_PYTHON%" == "" set DESIRED_PYTHON=3.5;3.6;3.7
 set DESIRED_PYTHON_PREFIX=%DESIRED_PYTHON:.=%
@@ -62,6 +62,12 @@ FOR %%v IN (%DESIRED_PYTHON%) DO (
     set PYTHON_VERSION_STR=!PYTHON_VERSION_STR:.=!
     conda remove -n py!PYTHON_VERSION_STR! --all -y || rmdir %CONDA_HOME%\envs\py!PYTHON_VERSION_STR! /s
     conda create -n py!PYTHON_VERSION_STR! -y -q numpy>=1.11 mkl>=2018 python=%%v
+    if "%CUDA_VERSION%" == "100" (
+        set TORCH_WHEEL=https://download.pytorch.org/whl/%CUVER%/torch-1.2.0-cp!PYTHON_VERSION_STR!-cp!PYTHON_VERSION_STR!m-win_amd64.whl
+    ) else (
+        set TORCH_WHEEL=https://download.pytorch.org/whl/%CUVER%/torch-1.2.0%2B%CUVER%-cp!PYTHON_VERSION_STR!-cp!PYTHON_VERSION_STR!m-win_amd64.whl
+    )
+    pip install "!TORCH_WHEEL!"
 )
 endlocal
 
@@ -71,11 +77,22 @@ if "%DEBUG%" == "1" (
     set BUILD_TYPE=release
 )
 
+:: Install sccache
+if "%USE_SCCACHE%" == "1" (
+    mkdir %CD%\tmp_bin
+    curl -k https://s3.amazonaws.com/ossci-windows/sccache.exe --output %CD%\tmp_bin\sccache.exe
+    if not "%CUDA_VERSION%" == "" (
+        copy %CD%\tmp_bin\sccache.exe %CD%\tmp_bin\nvcc.exe
+
+        set CUDA_NVCC_EXECUTABLE=%CD%\tmp_bin\nvcc
+        set "PATH=%CD%\tmp_bin;%PATH%"
+    )
+)
+
 for %%v in (%DESIRED_PYTHON_PREFIX%) do (
     :: Activate Python Environment
     set PYTHON_PREFIX=%%v
     set "PATH=%CONDA_HOME%\envs\%%v;%CONDA_HOME%\envs\%%v\scripts;%CONDA_HOME%\envs\%%v\Library\bin;%ORIG_PATH%"
-    pip install %TORCH_WHEEL%
     @setlocal
     :: Set Flags
     if NOT "%CUDA_VERSION%"=="cpu" (

@@ -30,7 +30,7 @@ jobs:
       - name: PYTORCH_REPO
         value: 'pytorch'
       - name: PYTORCH_BRANCH
-        value: 'v1.2.0'
+        value: 'v0.4.0'
     - ${{ if eq(parameters.msagent, 'true') }}:
       - name: USE_SCCACHE
         value: 0
@@ -49,78 +49,78 @@ jobs:
         PY3.5:
           DESIRED_PYTHON: 3.5
           CUDA_VERSION: cpu
-          TORCHVISION_BUILD_VERSION: '1.2.0+cpu'
+          TORCHVISION_BUILD_VERSION: '0.4.0+cpu'
         # PY3.6:
         #   DESIRED_PYTHON: 3.6
         #   CUDA_VERSION: cpu
-        #   TORCHVISION_BUILD_VERSION: '1.2.0+cpu'
+        #   TORCHVISION_BUILD_VERSION: '0.4.0+cpu'
         # PY3.7:
         #   DESIRED_PYTHON: 3.7
         #   CUDA_VERSION: cpu
-        #   TORCHVISION_BUILD_VERSION: '1.2.0+cpu'
+        #   TORCHVISION_BUILD_VERSION: '0.4.0+cpu'
       ${{ if and(eq(parameters.spec, 'CPU'), eq(parameters.package, 'Conda')) }}:
         PY3.5:
           DESIRED_PYTHON: 3.5
           CUDA_VERSION: cpu
-          TORCHVISION_BUILD_VERSION: '1.2.0'
+          TORCHVISION_BUILD_VERSION: '0.4.0'
         # PY3.6:
         #   DESIRED_PYTHON: 3.6
         #   CUDA_VERSION: cpu
-        #   TORCHVISION_BUILD_VERSION: '1.2.0'
+        #   TORCHVISION_BUILD_VERSION: '0.4.0'
         # PY3.7:
         #   DESIRED_PYTHON: 3.7
         #   CUDA_VERSION: cpu
-        #   TORCHVISION_BUILD_VERSION: '1.2.0'
+        #   TORCHVISION_BUILD_VERSION: '0.4.0'
       ${{ if and(ne(parameters.spec, 'CPU'), eq(parameters.package, 'Wheels')) }}:
         PY3.5_92:
           DESIRED_PYTHON: 3.5
           CUDA_VERSION: 92
-          TORCHVISION_BUILD_VERSION: '1.2.0+cu92'
+          TORCHVISION_BUILD_VERSION: '0.4.0+cu92'
         # PY3.6_92:
         #   DESIRED_PYTHON: 3.6
         #   CUDA_VERSION: 92
-        #   TORCHVISION_BUILD_VERSION: '1.2.0+cu92'
+        #   TORCHVISION_BUILD_VERSION: '0.4.0+cu92'
         # PY3.7_92:
         #   DESIRED_PYTHON: 3.7
         #   CUDA_VERSION: 92
-        #   TORCHVISION_BUILD_VERSION: '1.2.0+cu92'
+        #   TORCHVISION_BUILD_VERSION: '0.4.0+cu92'
         PY3.5_100:
           DESIRED_PYTHON: 3.5
           CUDA_VERSION: 100
-          TORCHVISION_BUILD_VERSION: '1.2.0'
+          TORCHVISION_BUILD_VERSION: '0.4.0'
         # PY3.6_100:
         #   DESIRED_PYTHON: 3.6
         #   CUDA_VERSION: 100
-        #   TORCHVISION_BUILD_VERSION: '1.2.0'
+        #   TORCHVISION_BUILD_VERSION: '0.4.0'
         # PY3.7_100:
         #   DESIRED_PYTHON: 3.7
         #   CUDA_VERSION: 100
-        #   TORCHVISION_BUILD_VERSION: '1.2.0'
+        #   TORCHVISION_BUILD_VERSION: '0.4.0'
       ${{ if and(ne(parameters.spec, 'CPU'), eq(parameters.package, 'Conda')) }}:
         PY3.5_92:
           DESIRED_PYTHON: 3.5
           CUDA_VERSION: 92
-          TORCHVISION_BUILD_VERSION: '1.2.0'
+          TORCHVISION_BUILD_VERSION: '0.4.0'
         # PY3.6_92:
         #   DESIRED_PYTHON: 3.6
         #   CUDA_VERSION: 92
-        #   TORCHVISION_BUILD_VERSION: '1.2.0'
+        #   TORCHVISION_BUILD_VERSION: '0.4.0'
         # PY3.7_92:
         #   DESIRED_PYTHON: 3.7
         #   CUDA_VERSION: 92
-        #   TORCHVISION_BUILD_VERSION: '1.2.0'
+        #   TORCHVISION_BUILD_VERSION: '0.4.0'
         PY3.5_100:
           DESIRED_PYTHON: 3.5
           CUDA_VERSION: 100
-          TORCHVISION_BUILD_VERSION: '1.2.0'
+          TORCHVISION_BUILD_VERSION: '0.4.0'
         # PY3.6_100:
         #   DESIRED_PYTHON: 3.6
         #   CUDA_VERSION: 100
-        #   TORCHVISION_BUILD_VERSION: '1.2.0'
+        #   TORCHVISION_BUILD_VERSION: '0.4.0'
         # PY3.7_100:
         #   DESIRED_PYTHON: 3.7
         #   CUDA_VERSION: 100
-        #   TORCHVISION_BUILD_VERSION: '1.2.0'
+        #   TORCHVISION_BUILD_VERSION: '0.4.0'
 
   pool:
     ${{ if eq(parameters.msagent, 'true') }}:

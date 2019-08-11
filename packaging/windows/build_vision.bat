@@ -71,7 +71,7 @@ FOR %%v IN (%DESIRED_PYTHON%) DO (
     if "%CUDA_VERSION%" == "100" (
         set TORCH_WHEEL=https://download.pytorch.org/whl/%CUVER%/torch-1.2.0-cp!PYTHON_VERSION_STR!-cp!PYTHON_VERSION_STR!m-win_amd64.whl
     ) else (
-        set TORCH_WHEEL=https://download.pytorch.org/whl/%CUVER%/torch-1.2.0%2B%CUVER%-cp!PYTHON_VERSION_STR!-cp!PYTHON_VERSION_STR!m-win_amd64.whl
+        set TORCH_WHEEL=https://download.pytorch.org/whl/%CUVER%/torch-1.2.0%%2B%CUVER%-cp!PYTHON_VERSION_STR!-cp!PYTHON_VERSION_STR!m-win_amd64.whl
     )
     echo Installing !TORCH_WHEEL!...
     pip install "!TORCH_WHEEL!"

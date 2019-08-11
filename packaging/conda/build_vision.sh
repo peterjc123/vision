@@ -159,6 +159,7 @@ for py_ver in "${DESIRED_PYTHON[@]}"; do
                         --python "$py_ver" \
                         --output-folder "$output_folder" \
                         --no-verify \
+                        --no-test \
                         ../torchvision
     else
         time CMAKE_ARGS=${CMAKE_ARGS[@]} \
@@ -172,6 +173,7 @@ for py_ver in "${DESIRED_PYTHON[@]}"; do
                         --python "$py_ver" \
                         --output-folder "$output_folder" \
                         --no-verify \
+                        --no-test \
                         ../torchvision
     fi
     echo "Finished conda-build at $(date)"

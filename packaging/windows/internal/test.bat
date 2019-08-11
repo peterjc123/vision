@@ -15,7 +15,12 @@ for /F "delims=" %%i in ('where /R %SRC_DIR%\output\%CUDA_PREFIX% *%MODULE_NAME%
 
 if ERRORLEVEL 1 exit /b 1
 
-if NOT "%BUILD_VISION%" == "" goto smoke_test_end
+if NOT "%BUILD_VISION%" == "" (
+    echo Smoke testing imports
+    python -c "import torchvision"
+    if ERRORLEVEL 1 exit /b 1
+    goto smoke_test_end
+)
 
 echo Smoke testing imports
 python -c "import torch"
@@ -55,8 +60,8 @@ if NOT "%CUDA_PREFIX%" == "cpu" if "%NVIDIA_GPU_EXISTS%" == "1" (
 )
 :smoke_test_end
 
-REM echo Not running unit tests. Hopefully these problems are caught by CI
-REM goto test_end
+echo Not running unit tests. Hopefully these problems are caught by CI
+goto test_end
 
 if "%BUILD_VISION%" == "" (
     cd pytorch\test

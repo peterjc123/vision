@@ -23,11 +23,14 @@ set CUDA_VERSION=%~1
 set TORCHVISION_BUILD_VERSION=%~2
 set TORCHVISION_BUILD_NUMBER=%~3
 
+set BUILD_VERSION=%TORCHVISION_BUILD_VERSION%
+
 :env_end
 
 if NOT "%CUDA_VERSION%" == "cpu" (
     set CUDA_PREFIX=cuda%CUDA_VERSION%
     set CUVER=cu%CUDA_VERSION%
+    set FORCE_CUDA=1
 ) else (
     set CUDA_PREFIX=cpu
     set CUVER=cpu

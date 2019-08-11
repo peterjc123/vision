@@ -27,6 +27,7 @@ if [[ "$desired_cuda" == 'cpu' ]]; then
 else
     # Switch desired_cuda to be M.m to be consistent with other scripts in
     # pytorch/builder
+    export FORCE_CUDA=1
     cuda_nodot="$desired_cuda"
 
     if [[ ${#cuda_nodot} -eq 2 ]]; then
@@ -153,7 +154,7 @@ for py_ver in "${DESIRED_PYTHON[@]}"; do
     if [[ "$desired_cuda" == "9.2" ]]; then
         time CMAKE_ARGS=${CMAKE_ARGS[@]} \
             BUILD_VERSION="$TORCHVISION_BUILD_VERSION" \
-            CUVER="$cuver" \
+            CU_VERSION="$cuver" \
             SOURCE_ROOT_DIR="$vision_rootdir" \
             conda build -c "$ANACONDA_USER" \
                         -c "numba/label/dev" \
@@ -166,7 +167,7 @@ for py_ver in "${DESIRED_PYTHON[@]}"; do
     else
         time CMAKE_ARGS=${CMAKE_ARGS[@]} \
             BUILD_VERSION="$TORCHVISION_BUILD_VERSION" \
-            CUVER="$cuver" \
+            CU_VERSION="$cuver" \
             SOURCE_ROOT_DIR="$vision_rootdir" \
             conda build -c "$ANACONDA_USER" \
                         --no-anaconda-upload \

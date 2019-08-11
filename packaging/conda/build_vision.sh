@@ -99,21 +99,21 @@ conda config --set anaconda_upload no
 export TORCHVISION_PACKAGE_SUFFIX=""
 if [[ "$desired_cuda" == 'cpu' ]]; then
     export CONDA_CUDATOOLKIT_CONSTRAINT=""
-    export CONDA_CPUONLY_FEATURE="    - cpuonly # [not osx]"
+    export CONDA_CPUONLY_FEATURE="- cpuonly # [not osx]"
     export CUDA_VERSION="None"
 else
     export CONDA_CPUONLY_FEATURE=""
     . ./switch_cuda_version.sh $desired_cuda
     if [[ "$desired_cuda" == "10.1" ]]; then
-        export CONDA_CUDATOOLKIT_CONSTRAINT="    - cudatoolkit >=10.1,<10.2 # [not osx]"
+        export CONDA_CUDATOOLKIT_CONSTRAINT="- cudatoolkit >=10.1,<10.2 # [not osx]"
     elif [[ "$desired_cuda" == "10.0" ]]; then
-        export CONDA_CUDATOOLKIT_CONSTRAINT="    - cudatoolkit >=10.0,<10.1 # [not osx]"
+        export CONDA_CUDATOOLKIT_CONSTRAINT="- cudatoolkit >=10.0,<10.1 # [not osx]"
     elif [[ "$desired_cuda" == "9.2" ]]; then
-        export CONDA_CUDATOOLKIT_CONSTRAINT="    - cudatoolkit >=9.2,<9.3 # [not osx]"
+        export CONDA_CUDATOOLKIT_CONSTRAINT="- cudatoolkit >=9.2,<9.3 # [not osx]"
     elif [[ "$desired_cuda" == "9.0" ]]; then
-        export CONDA_CUDATOOLKIT_CONSTRAINT="    - cudatoolkit >=9.0,<9.1 # [not osx]"
+        export CONDA_CUDATOOLKIT_CONSTRAINT="- cudatoolkit >=9.0,<9.1 # [not osx]"
     elif [[ "$desired_cuda" == "8.0" ]]; then
-        export CONDA_CUDATOOLKIT_CONSTRAINT="    - cudatoolkit >=8.0,<8.1 # [not osx]"
+        export CONDA_CUDATOOLKIT_CONSTRAINT="- cudatoolkit >=8.0,<8.1 # [not osx]"
     else
         echo "unhandled desired_cuda: $desired_cuda"
         exit 1

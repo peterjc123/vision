@@ -145,7 +145,7 @@ for py_ver in "${DESIRED_PYTHON[@]}"; do
              conda build -c "$ANACONDA_USER" \
                          --no-anaconda-upload \
                          --output-folder "$output_folder" \
-                         vs2017
+                         ../vs2017
     fi
 
     conda config --set anaconda_upload no
@@ -162,7 +162,7 @@ for py_ver in "${DESIRED_PYTHON[@]}"; do
                         --output-folder "$output_folder" \
                         --no-test \
                         --no-verify \
-                        torchvision
+                        ../torchvision
     else
         time CMAKE_ARGS=${CMAKE_ARGS[@]} \
             BUILD_VERSION="$TORCHVISION_BUILD_VERSION" \
@@ -174,7 +174,7 @@ for py_ver in "${DESIRED_PYTHON[@]}"; do
                         --output-folder "$output_folder" \
                         --no-test \
                         --no-verify \
-                        torchvision
+                        ../torchvision
     fi
     echo "Finished conda-build at $(date)"
 

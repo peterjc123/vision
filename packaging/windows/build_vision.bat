@@ -67,7 +67,7 @@ FOR %%v IN (%DESIRED_PYTHON%) DO (
 FOR %%v IN (%DESIRED_PYTHON%) DO (
     set PYTHON_VERSION_STR=%%v
     set PYTHON_VERSION_STR=!PYTHON_VERSION_STR:.=!
-    set "PATH=%CONDA_HOME%\envs\y!PYTHON_VERSION_STR!;%CONDA_HOME%\envs\y!PYTHON_VERSION_STR!\scripts;%CONDA_HOME%\envs\y!PYTHON_VERSION_STR!\Library\bin;%ORIG_PATH%"
+    set "PATH=%CONDA_HOME%\envs\py!PYTHON_VERSION_STR!;%CONDA_HOME%\envs\py!PYTHON_VERSION_STR!\scripts;%CONDA_HOME%\envs\py!PYTHON_VERSION_STR!\Library\bin;%ORIG_PATH%"
     if "%CUDA_VERSION%" == "100" (
         set TORCH_WHEEL=https://download.pytorch.org/whl/%CUVER%/torch-1.2.0-cp!PYTHON_VERSION_STR!-cp!PYTHON_VERSION_STR!m-win_amd64.whl
     ) else (

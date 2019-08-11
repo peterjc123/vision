@@ -156,7 +156,6 @@ for py_ver in "${DESIRED_PYTHON[@]}"; do
                         --no-anaconda-upload \
                         --python "$py_ver" \
                         --output-folder "$output_folder" \
-                        --no-test \
                         --no-verify \
                         ../torchvision
     else
@@ -168,7 +167,6 @@ for py_ver in "${DESIRED_PYTHON[@]}"; do
                         --no-anaconda-upload \
                         --python "$py_ver" \
                         --output-folder "$output_folder" \
-                        --no-test \
                         --no-verify \
                         ../torchvision
     fi

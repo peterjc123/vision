@@ -62,13 +62,21 @@ FOR %%v IN (%DESIRED_PYTHON%) DO (
     set PYTHON_VERSION_STR=!PYTHON_VERSION_STR:.=!
     conda remove -n py!PYTHON_VERSION_STR! --all -y || rmdir %CONDA_HOME%\envs\py!PYTHON_VERSION_STR! /s
     conda create -n py!PYTHON_VERSION_STR! -y -q numpy>=1.11 mkl>=2018 python=%%v
+)
+
+FOR %%v IN (%DESIRED_PYTHON%) DO (
+    set PYTHON_VERSION_STR=%%v
+    set PYTHON_VERSION_STR=!PYTHON_VERSION_STR:.=!
+    set "PATH=%CONDA_HOME%\envs\y!PYTHON_VERSION_STR!;%CONDA_HOME%\envs\y!PYTHON_VERSION_STR!\scripts;%CONDA_HOME%\envs\y!PYTHON_VERSION_STR!\Library\bin;%ORIG_PATH%"
     if "%CUDA_VERSION%" == "100" (
         set TORCH_WHEEL=https://download.pytorch.org/whl/%CUVER%/torch-1.2.0-cp!PYTHON_VERSION_STR!-cp!PYTHON_VERSION_STR!m-win_amd64.whl
     ) else (
         set TORCH_WHEEL=https://download.pytorch.org/whl/%CUVER%/torch-1.2.0%2B%CUVER%-cp!PYTHON_VERSION_STR!-cp!PYTHON_VERSION_STR!m-win_amd64.whl
     )
+    echo Installing !TORCH_WHEEL!...
     pip install "!TORCH_WHEEL!"
 )
+
 endlocal
 
 if "%DEBUG%" == "1" (

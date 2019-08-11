@@ -70,7 +70,7 @@ if [[ ! -d "$vision_rootdir" ]]; then
     rm -rf "$vision_rootdir"
     git clone "https://github.com/pytorch/vision" "$vision_rootdir"
     pushd "$vision_rootdir"
-    git checkout v$TORCHVISION_BUILD_VERSION
+    git checkout $PYTORCH_BRANCH
     popd
 fi
 

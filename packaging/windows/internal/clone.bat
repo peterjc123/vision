@@ -46,7 +46,7 @@ set PYTORCH_BRANCH=%last_commit%
 
 IF "%BUILD_VISION%" == "" (
     IF "%PYTORCH_BRANCH%" == "" (
-        set PYTORCH_BRANCH=v%PYTORCH_BUILD_VERSION%
+        set PYTORCH_BRANCH=v%TORCHVISION_BUILD_VERSION%
     )
     git checkout %PYTORCH_BRANCH%
     IF ERRORLEVEL 1 git checkout tags/%PYTORCH_BRANCH%

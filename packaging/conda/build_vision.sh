@@ -120,13 +120,8 @@ else
     fi
 fi
 
-if [[ "$desired_cuda" == cpu ]]; then
-    export CONDA_PYTORCH_BUILD_CONSTRAINT="- pytorch==1.2.0"
-    export CONDA_PYTORCH_CONSTRAINT="- pytorch==1.2.0"
-else
-    export CONDA_PYTORCH_BUILD_CONSTRAINT="- pytorch==1.2.0"
-    export CONDA_PYTORCH_CONSTRAINT="- pytorch==1.2.0"
-fi
+export CONDA_PYTORCH_BUILD_CONSTRAINT="- pytorch==1.2.0"
+export CONDA_PYTORCH_CONSTRAINT="- pytorch==1.2.0"
 
 # Loop through all Python versions to build a package for each
 for py_ver in "${DESIRED_PYTHON[@]}"; do
